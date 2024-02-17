@@ -2,10 +2,12 @@
 from settings import *
 from population import Population
 
+import logging
+
 
 def show_queryset_values(objs):
     values = list(map(lambda x: x.number, objs))
-    print(values)
+    return values
 
 
 def create_generation(best_10=None, iterator=0):
@@ -16,6 +18,5 @@ def create_generation(best_10=None, iterator=0):
     population = Population(best_10 or None)
     # population.show_population_average()
     best_10 = population.get_best_10()[:]
-    show_queryset_values(best_10)
-    # print(f"best_10: {best_10}")
+    logging.info(show_queryset_values(best_10))
     create_generation(best_10, iterator)

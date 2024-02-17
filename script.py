@@ -6,11 +6,13 @@ from settings import *
 from population import Population 
 
 from utils import show_queryset_values, create_generation
-from logger import logger
+
+import logging
 
 
 def main():
-    logger.info('tis is logger info')
+    logging.basicConfig(filename='logs.log',level=logging.DEBUG, filemode = 'w', format='%(process)d-%(levelname)s-%(message)s') 
+
     create_generation(None, 0)
     print(30 * "=")
     # population = Population()
