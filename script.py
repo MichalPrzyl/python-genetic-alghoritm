@@ -3,11 +3,13 @@ import math
 
 from settings import *
 
-from population import Population 
 
-from utils import show_queryset_values, create_generation
+from utils import show_queryset_values
 
 import logging
+
+from population_manager import create_generation
+
 
 
 def main():

@@ -1,5 +1,8 @@
 from sample import Sample
 import math
+import logging
+
+from utils import show_queryset_values
 
 
 class Population:
@@ -39,3 +42,4 @@ class Population:
         # print(f"best_10: {list(map(lambda x: x.number, best_10))}")
 
         return best_10  # I know it's not 10
+
