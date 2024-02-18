@@ -5,13 +5,16 @@ from utils import show_queryset_values
 
 def create_generation(best_squad=None, iterator=0):
     iterator += 1
-    # print(f"iteration: {iterator}")
     if iterator > MAX_RECURSION_ITERATIONS:
         raise ValueError("iterion too much")
     population = Population(best_squad or None)
-    # population.show_population_average()
     best_squad = population.get_best_squad()[:]
-    #logging.info(show_queryset_values(best_squad))
+    handle_logging(population)
+    create_generation(best_squad, iterator)
+
+
+def handle_logging(population):
     if LOGGING_AVERAGE_OF_POPULATION:
         logging.info(population.get_population_average())
-    create_generation(best_squad, iterator)
+    if LOGGING_WHOLE_POPULATION_AFTER_EACH_ITERATION:
+        logging.info(population.get_population())

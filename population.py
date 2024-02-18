@@ -55,7 +55,7 @@ class Population:
     def get_population_average(self):
         values = list(map(lambda x: x.number, self.population))
         average = sum(values) / len(self.population)
-        #print(f"average: {average}")
+        average = round(average, 2)
         return average
 
     def get_best_squad(self):
