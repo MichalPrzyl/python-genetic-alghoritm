@@ -44,7 +44,6 @@ class Population:
                     sample.mutate()
                 self.population.append(sample)
 
-
     def get_population(self):
         return sorted(list(map(lambda x: x.number, self.population)))
 
@@ -57,7 +56,6 @@ class Population:
     def get_population_average(self):
         values = list(map(lambda x: x.number, self.population))
         average = sum(values) / len(self.population)
-        #average = round(average, 2)
         return round(average, PRECISION)
 
     def get_best_squad(self):
@@ -72,7 +70,6 @@ class Population:
             self.population, key=lambda x: x.points)[:SIZE_OF_BEST_SQUAD]
         values = list(map(lambda x: x.number, best_squad))
         return values
-
 
     def get_points(self):
         xd = list(map(lambda x: {'number': x.number, 'points': x.points}, self.population))

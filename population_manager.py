@@ -6,6 +6,8 @@ from utils import show_queryset_values
 def create_generation(best_squad=None, iterator=0):
     iterator += 1
     if iterator > MAX_RECURSION_ITERATIONS:
+        logging.info(
+            f"LAST AVERAGE OF BEST_SQUAD: {round(sum(list(map(lambda x: x.number, best_squad)))/len(best_squad), PRECISION)}")
         raise ValueError("iterion too much")
     population = Population(best_squad or None, iterator)
     best_squad = population.get_best_squad()[:]
