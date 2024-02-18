@@ -4,14 +4,16 @@ import json
 import logging
 from settings import SIZE_OF_POPULATION, SIZE_OF_BEST_SQUAD,\
     BESTER_MULTIPLIER, LOGGING_AVERAGE_OF_POPULATION, \
-    LOGING_CHANGE_NUMBER, FIXED_INITIAL_POPULATION
+    LOGING_CHANGE_NUMBER, FIXED_INITIAL_POPULATION,\
+    PRECISION
 from utils import show_queryset_values
 
 
 class Population:
     
-    def __init__(self, best_squad=None):
+    def __init__(self, best_squad=None, iteration=0):
         self.population = []
+        self.iteration = iteration
 
         if best_squad:
             self.__create_next_iteration_generation(best_squad)
@@ -55,8 +57,8 @@ class Population:
     def get_population_average(self):
         values = list(map(lambda x: x.number, self.population))
         average = sum(values) / len(self.population)
-        average = round(average, 2)
-        return average
+        #average = round(average, 2)
+        return round(average, PRECISION)
 
     def get_best_squad(self):
         values = list(map(lambda x: x.number, self.population))
@@ -65,3 +67,13 @@ class Population:
 
         return best_squad
 
+    def get_best_squad_values(self):
+        best_squad = sorted(
+            self.population, key=lambda x: x.points)[:SIZE_OF_BEST_SQUAD]
+        values = list(map(lambda x: x.number, best_squad))
+        return values
+
+
+    def get_points(self):
+        xd = list(map(lambda x: {'number': x.number, 'points': x.points}, self.population))
+        return xd
