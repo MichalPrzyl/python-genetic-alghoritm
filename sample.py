@@ -2,6 +2,8 @@ import random
 
 from settings import *
 
+import logging
+
 
 class Sample:
     def __init__(self, number=None):
@@ -24,9 +26,10 @@ class Sample:
         return False
 
     def mutate(self):
+        random_value = random.uniform(0.0, MUTATION_APLITUDE)
+        if LOGING_CHANGE_NUMBER:
+            logging.info(random_value)
         if random.randrange(0, 101) > 50:
-            # self.number -= random.randrange(0, MUTATION_APLITUDE)
-            self.number -= random.uniform(0.0, MUTATION_APLITUDE)
+            self.number -= random_value
         else:
-            # self.number += random.randrange(0, MUTATION_APLITUDE)
-            self.number += random.uniform(0.0, MUTATION_APLITUDE)
+            self.number += random_value
