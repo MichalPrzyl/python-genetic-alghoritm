@@ -35,7 +35,6 @@ class Population:
                 sample = Sample(number)
                 self.population.append(sample)
 
-
     def __create_next_iteration_generation(self, best_squad):
         for bester in best_squad:
             for _ in range(BESTER_MULTIPLIER):
@@ -72,5 +71,6 @@ class Population:
         return values
 
     def get_points(self):
-        xd = list(map(lambda x: {'number': x.number, 'points': x.points}, self.population))
-        return xd
+        points = list(map(lambda x: {'number': x.number, 'points': x.points}, self.population))
+        return points
+
